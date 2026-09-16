@@ -119,19 +119,12 @@ app.post('/api/chat', async (req, res) => {
             5. Celebra o progresso com entusiasmo, emojis (✨, 📚, 💡) e reforço positivo.
         `;
 
-        const model = genAI.getGenerativeModel({
-            model: 'gemini-3.6-flash',
-            systemInstruction: systemInstruction
-        });
-
         // Format history for chat
         const chatHistory = history.map(h => ({
             role: h.sender === 'student' ? 'user' : 'model',
             parts: [{ text: h.message }]
         }));
 
-        const chat = model.startChat({ history: chatHistory });
-        
         let userContent = message || "Podes analisar este exercício?";
         if (imageBase64) {
             userContent = [
@@ -145,8 +138,39 @@ app.post('/api/chat', async (req, res) => {
             ];
         }
 
-        const result = await chat.sendMessage(userContent);
-        const responseText = result.response.text();
+        let responseText;
+        try {
+            // Tentativa 1: gemini-3.5-flash-lite (Modelo super leve, rápido e com ótimas quotas estáveis)
+            const model = genAI.getGenerativeModel({
+                model: 'gemini-3.5-flash-lite',
+                systemInstruction: systemInstruction
+            });
+            const chat = model.startChat({ history: chatHistory });
+            const result = await chat.sendMessage(userContent);
+            responseText = result.response.text();
+        } catch (err1) {
+            console.warn('⚠️ gemini-3.5-flash-lite indisponível ou quota excedida. A tentar gemini-3.5-flash...', err1.message);
+            try {
+                // Tentativa 2: gemini-3.5-flash
+                const model35 = genAI.getGenerativeModel({
+                    model: 'gemini-3.5-flash',
+                    systemInstruction: systemInstruction
+                });
+                const chat35 = model35.startChat({ history: chatHistory });
+                const result35 = await chat35.sendMessage(userContent);
+                responseText = result35.response.text();
+            } catch (err2) {
+                console.error('❌ Ambos os modelos falharam devido a limites de quota:', err2.message);
+                
+                // Fallback amigável e pedagógico para a Leonor nunca ver uma mensagem de erro crua
+                responseText = `Olá, Leonor! O nosso servidor de inteligência artificial está temporariamente a descansar devido a um limite de tráfego (limite de quota diária atingido) 🌟\n\n` +
+                               `But não te preocupes! Eu continuo aqui para te apoiar em **${subjectName}** (${mode}).\n` +
+                               `Como estamos a analisar esta questão de forma autónoma, diz-me:\n` +
+                               `1. Qual é o problema ou exercício de ${subjectName} que estás a tentar resolver?\n` +
+                               `2. Que dados é que o enunciado já te dá?\n\n` +
+                               `Escreve a tua ideia aqui e vamos decifrar este enigma passo a passo! 💪✨`;
+            }
+        }
 
         const storedMessage = imageBase64 ? (message ? `${message} 📸 [Foto anexada]` : '📸 [Foto do exercício anexada]') : message;
 
