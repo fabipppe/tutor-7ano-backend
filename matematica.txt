@@ -1,0 +1,27 @@
+# Matemática 7.º Ano - Aprendizagens Essenciais (Portugal)
+
+## Números Racionais
+- Operações com números racionais (adição, subtração, multiplicação, divisão e potenciação).
+- Regras de sinais e prioridade de operações.
+- Resolução de problemas envolvendo frações e dízimas.
+
+## Álgebra (Sequências e Regularidades)
+- Sequências numéricas e loi de formação (termos gerais).
+- Equações do 1.º grau a uma incógnita (resolução e verificação).
+- Resolução de problemas com equações.
+
+## Funções e Proporcionalidade
+- Proporcionalidade direta e inversa. Constante de proporcionalidade.
+- Gráficos cartesianos e representação de situações do dia a dia.
+
+## Geometria e Medida
+- Ângulos (adjacentes, opostos pelo vértice, complementares, suplementares, ângulos formados por duas retas paralelas cortadas por uma secante).
+- Polígonos (triângulos e quadriláteros: propriedades e soma dos ângulos internos).
+- Teorema de Pitágoras (aplicações no cálculo de comprimentos em triângulos retângulo).
+- Áreas e perímetros de figuras planas; áreas e volumes de sólidos geométricos (prismas, cilindros, pirâmides, cones, esferas).
+
+## Estatística e Probabilidades
+- Organização e tratamento de dados (tabelas de frequências absolutas e relativas).
+- Gráficos estatísticos (diagramas de barras, gráficos circulares, histogramas).
+- Medidas de localização: média, mediana e moda.
+- Conceito de probabilidade e cálculo de probabilidades em experiências simples.

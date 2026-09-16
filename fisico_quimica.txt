@@ -1,0 +1,11 @@
+# Físico-Química 7.º Ano - Aprendizagens Essenciais (Portugal)
+
+## Matéria
+- Substâncias elementares e compostos químicos; misturas homogéneas e heterogéneas.
+- Átomos, moléculas e iões. Tabela periódica básica.
+- Estados físicos da matéria e mudanças de estado (fusão, solidificação, vaporização, condensação, sublimação).
+
+## Energia
+- Formas de energia (cinética, potencial, térmica, elétrica, química, luminosa).
+- Transferência de energia (calor e trabalho). Conservação da energia.
+- Fontes de energia renováveis e não renováveis.
